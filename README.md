@@ -14,6 +14,9 @@ Running the client:
 
 ## Hide and Seek
 
-This will be an implementation of [RFC-002](RFC-002.md).
+This will be an implementation of [RFC-002](RFC-002.md) made by each team.
 
-*TODO*
+- Run the broker
+- Run the seeker (list mode or register mode)
+
+[RFC-003](RFC-003.md) implements the `hider` part.

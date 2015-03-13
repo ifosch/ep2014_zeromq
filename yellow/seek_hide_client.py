@@ -2,17 +2,23 @@
 import argparse
 import zmq
 
+from utils import get_local_ip
+
 context = zmq.Context()
 
 socket = context.socket(zmq.DEALER)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-c', '--connect-address', default='tcp://127.0.0.1:5555')
-parser.add_argument('-i', '--ip-address', default='127.0.0.1')
-parser.add_argument('-p', '--port', default='5555')
 
 args = parser.parse_args()
 
 socket.connect(args.connect_address)
-socket.send(args.ip_address + ":" + args.port)
-print socket.recv()
+
+ip = get_local_ip()
+port = 5555
+msg = "REGISTER {}:{}".format(ip, port)
+socket.send(msg)
+print "Waiting for response..."
+response = socket.recv()
+print response
